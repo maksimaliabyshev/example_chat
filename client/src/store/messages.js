@@ -19,6 +19,7 @@ export const initMessagesAtConnection = (
   next();
 };
 
+//редьюсер сообщений на стороне клиента
 export const messages = (oldState = [], action) => {
   switch (action.type) {
     case "SET_MESSAGES": {

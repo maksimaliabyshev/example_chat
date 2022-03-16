@@ -17,26 +17,22 @@ app.get("/hello", (req, res) => {
   res.send("<h1>Hello world</h1>");
 });
 
-//плагины редусеров по умолчанию
+//редусеры по умолчанию
 const defaultHandlers = require("react-redux-socket/server/handlers/");
-//плагин
+//редусеры обработки экшенов сообщений
 const messagesHandlers = require("./handlers/messages");
+const usersHandlers = require("./handlers/users");
 
 const ioActionHandler = require("react-redux-socket/server")(io)
   .plugins(defaultHandlers.logConnection(log))
-  .plugins(messagesHandlers)
-  .log(log);
+  .plugins(messagesHandlers).log(log)
+  .plugins(usersHandlers);
 
 ioActionHandler.localDispatch({
   type: "SEND_MESSAGE",
   payload: {
-    message: { value: "localDispatch TEST MESSAGE" },
-  },
-  //   meta: {},
-  //   socket_meta: {
-  //     rrs_name: 'NO_NAME',
-  //     user: { name: 'koko', password: '123toto', room: 'koko room' }
-  //   }
+    message: { value: "SERVER SIDE REDUX ACTION WORKING on start" },
+  }
 });
 
 http.listen(port, function () {
