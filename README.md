@@ -13,7 +13,9 @@ yarn install or npm install
 yarn start 
 or 
 npm run start
-```
 
 client use 2000 port
 server use 3000 port
+```
+
+
